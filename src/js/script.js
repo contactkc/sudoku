@@ -1,6 +1,6 @@
-const generate = document.getElementById("generate");
-const solve = document.getElementById("solve");
-const clear = document.getElementById("clear");
+const generateBtn = document.getElementById("generate");
+const solveBtn = document.getElementById("solve");
+const clearBtn = document.getElementById("clear");
 const cells = [];
 
 const createPuzzle = () => {
@@ -157,6 +157,6 @@ const clearSudoku = () => {
 };
 
 sudokuGUI();
-generate.addEventListener("click", generateSudoku);
-solve.addEventListener("click", () => solveSudoku(false));
-clear.addEventListener("click", clearSudoku);
+generateBtn.addEventListener("click", generateSudoku);
+solveBtn.addEventListener("click", () => solveSudoku(false));
+clearBtn.addEventListener("click", clearSudoku);
