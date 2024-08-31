@@ -50,15 +50,7 @@ const validate = (e) => {
 };
 
 const squareNumber = (row, column) => {
-  if (row < 3 && column < 3) return 0;
-  if (row > 2 && row < 6 && column < 3) return 1;
-  if (row > 5 && column < 3) return 2;
-  if (row < 3 && column > 2 && column < 6) return 3;
-  if (row > 2 && row < 6 && column > 2 && column < 6) return 4;
-  if (row > 5 && column > 2 && column < 6) return 5;
-  if (row < 3 && column > 5) return 6;
-  if (row > 2 && row < 6 && column > 5) return 7;
-  if (row > 5 && column > 5) return 8;
+  return Math.floor(row / 3) * 3 + Math.floor(column / 3);
 };
 
 const validCheck = (cell, value) => {
@@ -77,23 +69,20 @@ const validCheck = (cell, value) => {
 
 const generateSudoku = () => {
   clearSudoku();
-  for (cell of cells) {
+
+  cells.forEach((cell) => {
     cell.a = 1;
-  }
+  });
 
   solveSudoku(true);
 
-  for (cell of cells) {
-    if (Math.floor(Math.random() * 3) == 0) {
+  cells.forEach((cell) => {
+    if (Math.random() < 0.33) {
       cell.value = "";
-    }
-  }
-
-  for (cell of cells) {
-    if (cell.value > 0) {
+    } else if (cell.value > 0) {
       cell.a = 0;
     }
-  }
+  });
 };
 
 const loadSudoku = () => {
