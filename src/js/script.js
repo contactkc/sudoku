@@ -19,27 +19,30 @@ const createPuzzle = () => {
 
 const sudokuGUI = () => {
   const table = document.getElementById("sudoku__gui");
+  const fragment = document.createDocumentFragment();
 
-  for (let c = 0; c < 9; c++) {
-    const row = document.createElement("tr");
+  for (let row = 0; row < 9; row++) {
+    const tr = document.createElement("tr");
 
-    for (let r = 0; r < 9; r++) {
+    for (let col = 0; col < 9; col++) {
       const input = document.createElement("input");
       input.type = "text";
       input.maxLength = 1;
-      input.row = r;
-      input.column = c;
-      input.square = squareNumber(r, c);
+      input.row = row;
+      input.column = col;
+      input.square = squareNumber(row, col);
       input.onkeydown = validate;
 
-      const cell = document.createElement("td");
-      cell.appendChild(input);
+      const td = document.createElement("td");
+      td.appendChild(input);
+      tr.appendChild(td);
 
-      row.appendChild(cell);
       cells.push(input);
     }
-    table.appendChild(row);
+    fragment.appendChild(tr);
   }
+
+  table.appendChild(fragment);
 };
 
 const validate = (e) => {
